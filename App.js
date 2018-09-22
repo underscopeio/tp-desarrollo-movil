@@ -1,13 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+
+import Map from './components/Map'
+import Camera from './components/Camera'
 
 export default class App extends React.Component {
+  handleLocationChange = coordinates => {
+    console.log(coordinates)
+  }
+
+  handlePictureTake = photoUrl => {
+    console.log(photoUrl)
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Map onLocationChange={this.handleLocationChange} />
+        <Camera onPictureTake={this.handlePictureTake} />
       </View>
-    );
+    )
   }
 }
 
@@ -18,4 +30,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
