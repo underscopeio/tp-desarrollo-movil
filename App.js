@@ -1,27 +1,26 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 
 import Map from './components/Map'
-import Camera from './components/Camera'
+import Localizar from './components/Location'
 
 export default class App extends React.Component {
   handleLocationChange = coordinates => {
     console.log(coordinates)
   }
 
-  handlePictureTake = photoUrl => {
-    console.log(photoUrl)
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <Map onLocationChange={this.handleLocationChange} />
-        <Camera onPictureTake={this.handlePictureTake} />
       </View>
     )
   }
 }
+
+// <Map onLocationChange={this.handleLocationChange} />
+
+// <Localizar/>
 
 const styles = StyleSheet.create({
   container: {
