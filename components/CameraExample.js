@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text, View, TouchableOpacity } from "react-native";
+import { Button, Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Camera, Permissions } from "expo";
 
 export default class CameraExample extends React.Component {
@@ -33,8 +33,9 @@ export default class CameraExample extends React.Component {
     } else if (hasCameraPermission === false) {
       return <Text>No access to camera</Text>;
     } else {
+      //const estiloPadre = { flex: 1 };
       return (
-        <View style={{ flex: 1 }}>
+        <View style={StyleSheet.absoluteFill}>
           <Camera
             ref={this.handleCameraRef}
             style={{ flex: 1 }}
@@ -43,33 +44,44 @@ export default class CameraExample extends React.Component {
             <View
               style={{
                 flex: 1,
-                backgroundColor: "transparent",
-                flexDirection: "row"
+                justifyContent: "flex-end"
               }}
             >
-              <TouchableOpacity
+              <View
                 style={{
-                  flex: 0.1,
-                  alignSelf: "flex-end",
-                  alignItems: "center"
-                }}
-                onPress={() => {
-                  this.setState({
-                    type:
-                      this.state.type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                  });
+                  backgroundColor: "pink",
+                  flexDirection: "row",
+                  justifyContent: "space-around"
                 }}
               >
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: "white" }}
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "green",
+                    flexDirection: "row"
+                  }}
+                  onPress={() => {
+                    this.setState({
+                      type:
+                        this.state.type === Camera.Constants.Type.back
+                          ? Camera.Constants.Type.front
+                          : Camera.Constants.Type.back
+                    });
+                  }}
                 >
-                  {" "}
-                  Flip{" "}
-                </Text>
-                <Button title="TAKE" onPress={this.takePicture} />
-              </TouchableOpacity>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      marginBottom: 10,
+                      color: "white",
+                      backgroundColor: "orange"
+                    }}
+                  >
+                    {" "}
+                    Flip{" "}
+                  </Text>
+                </TouchableOpacity>
+                <Button width="300" title="TAKE" onPress={this.takePicture} />
+              </View>
             </View>
           </Camera>
         </View>
